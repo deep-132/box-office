@@ -17,9 +17,7 @@ function App() {
       </Route>
 
       <Route exact path="/show/:id">
-        <div>
-          <Show />
-        </div>
+        <Show />
       </Route>
 
       <Route>

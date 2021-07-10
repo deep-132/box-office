@@ -7,12 +7,11 @@ import ActorGrid from '../components/actor/ActorGrid';
 const Home = () => {
   const [input, setInput] = useState('');
   const [results, setResults] = useState(null);
-  const [SearchOption, setSearchOption] = useState('shows');
+  const [searchOption, setSearchOption] = useState('shows');
 
-  const isShowsSearch = SearchOption === 'shows';
-
+  const isShowsSearch = searchOption === 'shows';
   const onSearch = () => {
-    apiGet(`/search/${SearchOption}?q=${input}`).then(result => {
+    apiGet(`/search/${searchOption}?q=${input}`).then(result => {
       setResults(result);
     });
   };
@@ -33,8 +32,9 @@ const Home = () => {
 
   const renderResults = () => {
     if (results && results.length === 0) {
-      return <div> No results </div>;
+      return <div>No results</div>;
     }
+
     if (results && results.length > 0) {
       return results[0].show ? (
         <ShowGrid data={results} />
@@ -42,6 +42,7 @@ const Home = () => {
         <ActorGrid data={results} />
       );
     }
+
     return null;
   };
 
@@ -54,6 +55,7 @@ const Home = () => {
         onKeyDown={onKeyDown}
         value={input}
       />
+
       <div>
         <label htmlFor="shows-search">
           Shows
@@ -77,6 +79,7 @@ const Home = () => {
           />
         </label>
       </div>
+
       <button type="button" onClick={onSearch}>
         Search
       </button>
